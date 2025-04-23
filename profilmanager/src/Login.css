@@ -1,0 +1,30 @@
+.login-container {
+    background-color: #ffffff;
+    padding: 2rem;
+  }
+  
+  .login-card {
+    max-width: 800px;
+    min-height: 400px;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 150, 136, 0.2);
+  }
+  
+  .text-teal {
+    color: #009688;
+  }
+  
+  .btn-custom {
+    background-color: #009688;
+    color: #fff;
+    border: none;
+    transition: 0.3s ease-in-out;
+    font-weight: 500;
+  }
+  
+  .btn-custom:hover {
+    background-color: #00796b;
+    transform: translateY(-2px);
+  }
+  

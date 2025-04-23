@@ -1,0 +1,36 @@
+.home-container {
+    background-color: #ffffff;
+  }
+  
+  .home-box {
+    max-width: 600px;
+    background-color: #ffffff;
+  }
+  
+  .btn-custom {
+    background-color: #009688;
+    color: white;
+    border: none;
+    transition: all 0.3s ease-in-out;
+    font-weight: 500;
+  }
+  
+  .btn-custom:hover {
+    background-color: #00796b;
+    transform: scale(1.05);
+  }
+  
+  .text-teal {
+    color: #009688;
+  }
+  
+  .home-illustration svg {
+    animation: float 2.5s ease-in-out infinite;
+  }
+  
+  @keyframes float {
+    0% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+    100% { transform: translateY(0); }
+  }
+  

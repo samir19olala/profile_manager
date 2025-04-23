@@ -1,0 +1,25 @@
+.text-teal {
+    color: #009688;
+  }
+  
+  .btn-custom {
+    background-color: #009688;
+    border: none;
+    color: white;
+    padding: 8px 20px;
+    transition: all 0.3s ease;
+  }
+  
+  .btn-custom:hover {
+    background-color: #00796b;
+  }
+  
+  .table-teal {
+    background-color: #009688;
+  }
+  
+  .dashboard-container {
+    background: white;
+    border-radius: 8px;
+  }
+  
