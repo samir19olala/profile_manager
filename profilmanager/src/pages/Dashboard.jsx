@@ -2,13 +2,18 @@ import { useState, useMemo } from 'react';
 import AddProfileModal from '../components/AddProfileModal';
 import '../Dashboard.css';
 import ViewProfileModal from '../components/ViewProfileModal';
+import UpdateProfileModal from '../components/UpdateProfileModal';
+import { useNavigate } from 'react-router-dom';
 
 export default function Dashboard() {
+
   const [profiles, setProfiles] = useState([]);
   const [search, setSearch] = useState('');
   const [showModal, setShowModal] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
+  const [showEditModal, setShowEditModal] = useState(null);
   const [selectedProfile, setSelectedProfile] = useState(null);
+  const navigate = useNavigate();
 
   const itemsPerPage = 5;
 
@@ -22,12 +27,24 @@ export default function Dashboard() {
     setProfiles(profiles.filter(p => p.id !== id));
   };
 
+  const handleLogout = () => {
+    navigate('/');
+  };
+
+
+  const handleEditProfile = (profile) => {
+    console.log(profile);
+    setProfiles(profiles.map(p => (p.id === profile.id ? { ...p, ...profile } : p)));
+    setShowEditModal(null);
+  };
+
   const filteredProfiles = useMemo(() => {
     return profiles.filter(p =>
       p.username.toLowerCase().includes(search.toLowerCase()) ||
       p.email.toLowerCase().includes(search.toLowerCase())
     );
   }, [search, profiles]);
+
 
   const totalPages = Math.ceil(filteredProfiles.length / itemsPerPage);
   const paginatedProfiles = filteredProfiles.slice(
@@ -36,7 +53,12 @@ export default function Dashboard() {
   );
 
   return (
-    <div className="dashboard-container container mt-5 p-4 shadow rounded">
+    <div className="dashboard-container container mt-5 p-4 shadow rounded ">
+      <button
+      className="btn btn-outline-secondary btn-sm btn-danger mb-3 text-white"
+       onClick={handleLogout}>
+      Deconnection
+    </button>
       <div className="d-flex justify-content-between align-items-center mb-3">
         <h2 className="text-teal">Gestion des Profils</h2>
         <button className="btn btn-custom" onClick={() => setShowModal(true)}>
@@ -86,10 +108,16 @@ export default function Dashboard() {
                       Voir
                     </button>
                     <button
-                      className="btn btn-outline-danger btn-sm"
+                      className="btn btn-outline-danger btn-sm me-2"
                       onClick={() => handleDelete(profile.id)}
                     >
                       Supprimer
+                    </button>
+                    <button
+                      className="btn btn-outline-warning btn-sm"
+                      onClick={() => setShowEditModal(profile)}
+                    >
+                      Modifier
                     </button>
                   </td>
                 </tr>
@@ -123,6 +151,13 @@ export default function Dashboard() {
         <ViewProfileModal
           profile={selectedProfile}
           onClose={() => setSelectedProfile(null)}
+        />
+      )}
+      {showEditModal && (
+        <UpdateProfileModal
+          data={showEditModal}
+          onClose={() => setShowEditModal(null)}
+          onUpdate={handleEditProfile}
         />
       )}
       

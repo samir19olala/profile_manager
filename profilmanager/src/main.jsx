@@ -3,7 +3,10 @@ import ReactDom from 'react-dom/client';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import App from './App';
 
+const myComponent = <p>Bonjour cedrine</p>
 
 ReactDom.createRoot(document.getElementById('root')).render(
-  <App/>
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>
 );
